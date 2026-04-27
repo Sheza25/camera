@@ -5,16 +5,49 @@
 </head>
 <body>
 
-  <video id="video" autoplay playsinline></video>
-  <br><br>
+<h2>Camera + Microphone Access</h2>
 
-  <button onclick="startMedia()">Start Camera + Mic</button>
-  <button onclick="startRecording()">Start Recording</button>
-  <button onclick="stopRecording()">Stop Recording</button>
+<video id="video" autoplay playsinline width="300"></video>
+<br><br>
 
-  <br><br>
-  <video id="recordedVideo" controls></video>
+<button onclick="startCamera()">Start Camera</button>
+<button onclick="startMic()">Start Mic</button>
 
-  <script src="index.js"></script>
+<script>
+let stream;
+
+async function startCamera() {
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: false
+    });
+    document.getElementById("video").srcObject = stream;
+  } catch (err) {
+    alert("Camera permission denied or error");
+    console.error(err);
+  }
+}
+
+async function startMic() {
+  try {
+    const audioStream = await navigator.mediaDevices.getUserMedia({
+      audio: true
+    });
+
+    console.log("Mic is working");
+    
+    // Optional: Listen to audio input
+    const audioContext = new AudioContext();
+    const source = audioContext.createMediaStreamSource(audioStream);
+    source.connect(audioContext.destination);
+
+  } catch (err) {
+    alert("Mic permission denied or error");
+    console.error(err);
+  }
+}
+</script>
+
 </body>
 </html>
