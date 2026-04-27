@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Image Slider</title>
+  <title>Camera + Mic</title>
 </head>
-
 <body>
 
-<video autoplay playsinline></video>
-    <script src="index.js"></script>
-</body>
+  <video id="video" autoplay playsinline></video>
+  <br><br>
 
+  <button onclick="startMedia()">Start Camera + Mic</button>
+  <button onclick="startRecording()">Start Recording</button>
+  <button onclick="stopRecording()">Stop Recording</button>
+
+  <br><br>
+  <video id="recordedVideo" controls></video>
+
+  <script src="script.js"></script>
+</body>
 </html>
